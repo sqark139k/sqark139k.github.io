@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BP Photo - ถ่ายรูปติดบัตร & วีซ่า / พาสปอร์ต</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff0000;
+            --primary-dark: #cc0000;
+            --dark: #111111;
+            --light: #f8f8f8;
+            --gray: #333333;
+            --accent: #ff3333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Section */
+        header {
+            background: linear-gradient(to bottom, #000000, #111111);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 0, 0, 0.1), transparent 70%);
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        .header-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--light);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Table Styling */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .price-table th, .price-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .price-table th {
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .price-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .price-table tr:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Extra Services */
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .service-card {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 25px;
+            width: 320px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .service-price {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 60px 0;
+            border-top: 3px solid var(--primary);
+        }
+        
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-card {
+            background-color: rgba(17, 17, 17, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: var(--dark);
+            color: var(--light);
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .contact-card:hover .contact-icon {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .contact-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .contact-link:hover {
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: black;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .footer-text {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer-note {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .price-table th, .price-table td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .service-card, .contact-card {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 99;
+                border-bottom: 2px solid var(--primary);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-link {
+                padding: 10px 0;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-camera"></i> BP Photo
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#id-photos" class="nav-link">ID Photos</a>
+                <a href="#visa-photos" class="nav-link">Visa/Passport</a>
+                <a href="#extra-services" class="nav-link">Extra Services</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <h1 class="header-title">ถ่ายรูปติดบัตร & วีซ่า / พาสปอร์ต</h1>
+            <p class="header-subtitle">บริการรวดเร็ว คุณภาพเป๊ะ พร้อมส่งไฟล์และรูปทันใจ</p>
+        </div>
+    </header>
+
+    <!-- ID Photo Section -->
+    <section id="id-photos">
+        <div class="container">
+            <h2 class="section-title">ภาพถ่ายติดบัตร (ID Photo)</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>ขนาดรูป</th>
+                        <th>6 รูป</th>
+                        <th>12 รูป</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 นิ้ว (25x33 mm)</td>
+                        <td><span class="price">100 บาท</span></td>
+                        <td><span class="price">120 บาท</span></td>
+                    </tr>
+                    <tr>
+                        <td>1.5 นิ้ว (30x40 mm)</td>
+                        <td><span class="price">120 บาท</span></td>
+                        <td><span class="price">140 บาท</span></td>
+                    </tr>
+                    <tr>
+                        <td>2 นิ้ว (40x53 mm)</td>
+                        <td><span class="price">140 บาท</span></td>
+                        <td><span class="price">160 บาท</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Visa/Passport Photo Section -->
+    <section id="visa-photos" style="background-color: rgba(255,255,255,0.03);">
+        <div class="container">
+            <h2 class="section-title">ภาพถ่าย Visa / Passport</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>ประเภท</th>
+                        <th>ขนาดรูป</th>
+                        <th>6 รูป</th>
+                        <th>12 รูป</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Schengen Visa</td>
+                        <td>35x45 mm</td>
+                        <td><span class="price">140 บาท</span></td>
+                        <td><span class="price">160 บาท</span></td>
+                    </tr>
+                    <tr>
+                        <td>China Visa</td>
+                        <td>33x48 mm</td>
+                        <td><span class="price">150 บาท</span></td>
+                        <td><span class="price">170 บาท</span></td>
+                    </tr>
+                    <tr>
+                        <td>American Visa</td>
+                        <td>51x51 mm</td>
+                        <td><span class="price">160 บาท</span></td>
+                        <td><span class="price">180 บาท</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Extra Services Section -->
+    <section id="extra-services">
+        <div class="container">
+            <h2 class="section-title">บริการเสริม (Extra Services)</h2>
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <h3 class="service-title">ไฟล์ภาพ</h3>
+                    <p class="service-price">50 บาท</p>
+                    <p class="service-description">
+                        รับไฟล์ดิจิทัลพร้อมรูปถ่าย สามารถนำไปใช้งานได้ทันที 
+                        ส่งผ่าน LINE หรืออีเมล์ได้ทันที
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="service-title">เฉพาะไฟล์ภาพ</h3>
+                    <p class="service-price">80 บาท</p>
+                    <p class="service-description">
+                        สำหรับลูกค้าที่ต้องการเฉพาะไฟล์ดิจิทัล ไม่ต้องการรูปถ่าย 
+                        ไฟล์คุณภาพสูงพร้อมใช้งาน
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="service-title">ตัดต่อชุด / เปลี่ยนฉาก</h3>
+                    <p class="service-price">50 บาท</p>
+                    <p class="service-description">
+                        บริการตัดต่อเปลี่ยนชุด หรือเปลี่ยนฉากหลังให้ตรงตามข้อกำหนด 
+                        เหมาะสำหรับวีซ่าและเอกสารราชการ
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">ติดต่อเรา (Contact Us)</h2>
+            <div class="contact-container">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-line"></i>
+                    </div>
+                    <h3 class="contact-title">LINE</h3>
+                    <a href="https://line.me/ti/p/X8sGoIYT47" class="contact-link" target="_blank">
+                        ติดต่อทาง LINE
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3 class="contact-title">Facebook</h3>
+                    <a href="https://www.facebook.com/share/1DxvV55b7b/" class="contact-link" target="_blank">
+                        BP Photo Facebook
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="contact-title">โทรศัพท์</h3>
+                    <a href="tel:0819077472" class="contact-link">
+                        081-907-7472
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="contact-title">แผนที่</h3>
+                    <a href="https://www.google.com/maps/place/229+%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3+bp+photo+%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B9%86+1+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%84%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%87+33+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B8%81+%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B0%E0%B8%9B%E0%B8%B4+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10240/@13.756359,100.6142803,15z/data=!4m6!3m5!1s0x30e29fa4b31b3ce3:0x98ab94e658e48996!8m2!3d13.756359!4d100.6142803!16s%2Fg%2F11vc5_s8r6?g_ep=Eg1tbF8yMDI1MDYzMF8wIJvbDyoASAJQAQ%3D%3D&fbclid=IwY2xjawLTcDZleHRuA2FlbQIxMABicmlkETE0dW9VN0lIaGZrSXRPV1FIAR5aj7XvKBryME37zM0fGkpU4rrGBk-43b4WlmUUhk9LlsC3kS3exQ065gxHmg_aem_c5U_b3V2FOd4IGCavFw1Eg " class="contact-link" target="_blank">
+                        ดูแผนที่ Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">Thank You – ขอบคุณที่ใช้บริการของเรา</p>
+            <p class="footer-note">
+                <i class="fas fa-camera"></i> BP Photo พร้อมให้บริการทุกวัน
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon based on menu state
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9596fbfb343dee4a',t:'MTc1MTU1MjAxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
